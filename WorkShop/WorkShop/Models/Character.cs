@@ -16,11 +16,11 @@
         public int Initiative { get; set; }
         public int HitPoints { get; set; }
         public int Speed { get; set; }
-        public int PartyId { get; set; }
-        public virtual Party Party { get; set; }
-        public int AbilitiesId { get; set; }
+        public int? PartyId { get; set; }
+        public virtual Party? Party { get; set; }
+        public int? AbilitiesId { get; set; }
         public virtual Abilities? Abilities { get; set; }
-        public int InventoryId { get; set; }
+        public int? InventoryId { get; set; }
         public virtual CharacterInventory? Inventory { get; set; }
 
     }

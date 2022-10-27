@@ -9,9 +9,11 @@ namespace WorkShop
     {
         static async Task Main(string[] args)
         {
-            var msg = await ClientGET();
+            var msgGET = await ClientGET();
+            var msgPOST = await ClientPOST();
             
-            Console.WriteLine(JToken.Parse(msg).ToString());
+            Console.WriteLine(JToken.Parse(msgGET).ToString());
+            Console.WriteLine(msgPOST);
         }
 
         public class Header : HttpClient
@@ -30,7 +32,7 @@ namespace WorkShop
 
                 client.DefaultRequestHeaders.Add("User-Agent", "Kolton's API");
 
-                var requestUri = "https://localhost:7190/api/Character/";
+                requestUri = "https://localhost:7190/api/Characters";
             }
         }
 
@@ -41,7 +43,7 @@ namespace WorkShop
             Header client = new Header();
             var requestUri = client.requestUri;
             
-            var stringTask = client.GetStringAsync(requestUri);
+           var stringTask = client.GetStringAsync(requestUri);
             var msg = await stringTask;
 
             return msg;
@@ -52,27 +54,38 @@ namespace WorkShop
             Header client = new Header();
             var requestUri = client.requestUri;
 
-            var characterPOST = new Character 
+            var characterPOST = new Character
             {
-                PartyId = 1, 
-                PlayerName = "Fred",
-                Name = "Bob",
-                Class = "Fighter",
-                Level = 0,
-                Race = "Orc",
-                Allignment = "Neutral Good",
-                Background = "Entertainer",
-                ProficiencyBonus = 2,
-                Initiative = 3,
-                HitPoints = 30,
-                Speed = 30,
-                ArmorClass = 30,
-                Experiance = 0,
-                AbilitiesId = 0,
-                Abilities = {Id = 0 },
-                InventoryId = 0,
-                Inventory = {Id = 0, ItemName = "thing", Amount = 50 }
-                
+                PlayerName = "string",
+                 Name = "string",
+                 Class = "string",
+                 Level = 0,
+                 Race = "string",
+                 Allignment = "string",
+                 Background = "string",
+                 ProficiencyBonus = 0,
+                 Experiance = 0,
+                 ArmorClass = 0,
+                 Initiative = 0,
+                 HitPoints = 0,
+                 Speed = 0,
+                 PartyId = 1 , 
+                /* AbilitiesId = null,
+                 Abilities = {
+                    Id = null,
+                    Strength = 0,
+                    Dexterity = 0,
+                    Constitution = 0,
+                    Intelligence = 0,
+                    Wisdom = 0,
+                    Charisma = 0
+                  },
+                 InventoryId = null,
+                 Inventory = {
+                    Id = null,
+                    ItemName = "string",
+                    Amount = 0
+                  }*/
             };
             var resultPOST = await client.PostAsync<Character>(requestUri, characterPOST, new JsonMediaTypeFormatter());
 

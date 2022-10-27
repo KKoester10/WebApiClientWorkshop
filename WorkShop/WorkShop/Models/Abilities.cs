@@ -2,7 +2,7 @@
 {
     public class Abilities
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int Strength { get; set; }
         public int Dexterity { get; set; }
         public int Constitution { get; set; }
