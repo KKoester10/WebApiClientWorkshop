@@ -52,7 +52,28 @@ namespace WorkShop
             Header client = new Header();
             var requestUri = client.requestUri;
 
-            var characterPOST = new Character {PartyId = 1, PlayerName = "Fred", Name = "Bob", Class = "Fighter", Level = 0, Race = "Orc", Allignment = "Neutral Good", Background = "Entertainer", ProficiencyBonus = 2, Initiative = 3, HitPoints = 30, Speed = 30, ArmorClass = 30, Experiance = 0, AbilitiesId = 4, InventoryId = 4 };
+            var characterPOST = new Character 
+            {
+                PartyId = 1, 
+                PlayerName = "Fred",
+                Name = "Bob",
+                Class = "Fighter",
+                Level = 0,
+                Race = "Orc",
+                Allignment = "Neutral Good",
+                Background = "Entertainer",
+                ProficiencyBonus = 2,
+                Initiative = 3,
+                HitPoints = 30,
+                Speed = 30,
+                ArmorClass = 30,
+                Experiance = 0,
+                AbilitiesId = 0,
+                Abilities = {Id = 0 },
+                InventoryId = 0,
+                Inventory = {Id = 0, ItemName = "thing", Amount = 50 }
+                
+            };
             var resultPOST = await client.PostAsync<Character>(requestUri, characterPOST, new JsonMediaTypeFormatter());
 
 

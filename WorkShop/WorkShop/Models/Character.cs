@@ -2,8 +2,6 @@
 {
     public class Character
     {
-        public int PartyId { get; set; }
-        public virtual Party Party { get; set; }
         public int Id { get; set; }
         public string? PlayerName { get; set; } 
         public string? Name { get; set; }
@@ -18,6 +16,8 @@
         public int Initiative { get; set; }
         public int HitPoints { get; set; }
         public int Speed { get; set; }
+        public int PartyId { get; set; }
+        public virtual Party Party { get; set; }
         public int AbilitiesId { get; set; }
         public virtual Abilities? Abilities { get; set; }
         public int InventoryId { get; set; }
