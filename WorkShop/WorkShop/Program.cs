@@ -10,9 +10,9 @@ namespace WorkShop
         static async Task Main(string[] args)
         {
             var msgGET = await ClientGET();
-            var msgPOST = await ClientPOST();
-            
             Console.WriteLine(JToken.Parse(msgGET).ToString());
+            
+            var msgPOST = await ClientPOST();
             Console.WriteLine(msgPOST);
         }
 
@@ -53,39 +53,37 @@ namespace WorkShop
         {
             Header client = new Header();
             var requestUri = client.requestUri;
-
             var characterPOST = new Character
-            {
-                PlayerName = "string",
-                 Name = "string",
-                 Class = "string",
-                 Level = 0,
-                 Race = "string",
-                 Allignment = "string",
-                 Background = "string",
-                 ProficiencyBonus = 0,
-                 Experiance = 0,
-                 ArmorClass = 0,
-                 Initiative = 0,
-                 HitPoints = 0,
-                 Speed = 0,
-                 PartyId = 1 , 
-                /* AbilitiesId = null,
-                 Abilities = {
-                    Id = null,
+            { 
+
+                PlayerName = "Kolton2",
+                Name = "string",
+                Class = "string",
+                Level = 0,
+                Race = "string",
+                Allignment = "string",
+                Background = "string",
+                ProficiencyBonus = 0,
+                Experiance = 0,
+                ArmorClass = 0,
+                Initiative = 0,
+                HitPoints = 0,
+                Speed = 0,
+                PartyId = 1,
+                AbilitiesId = 0,
+                Abilities = new Abilities {
                     Strength = 0,
                     Dexterity = 0,
                     Constitution = 0,
                     Intelligence = 0,
                     Wisdom = 0,
                     Charisma = 0
-                  },
-                 InventoryId = null,
-                 Inventory = {
-                    Id = null,
+                },
+                InventoryId = 0,
+                Inventory = new CharacterInventory {
                     ItemName = "string",
                     Amount = 0
-                  }*/
+                }
             };
             var resultPOST = await client.PostAsync<Character>(requestUri, characterPOST, new JsonMediaTypeFormatter());
 

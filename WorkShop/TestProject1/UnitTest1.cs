@@ -11,6 +11,7 @@ namespace TestProject1
         public  async void TestGET()
         {
             var msg = await Program.ClientGET();
+
             Assert.NotNull(msg);
         }
         [Fact]
