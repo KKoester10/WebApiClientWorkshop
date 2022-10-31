@@ -14,6 +14,13 @@ namespace WorkShop
             
             var msgPOST = await ClientPOST();
             Console.WriteLine(msgPOST);
+
+            var msgPUT = await ClientPUT();
+            Console.WriteLine(msgPUT);
+
+            var resultDELETE = await ClientDELETE();
+            Console.WriteLine(resultDELETE);
+
         }
 
         public class Header : HttpClient
@@ -32,7 +39,7 @@ namespace WorkShop
 
                 client.DefaultRequestHeaders.Add("User-Agent", "Kolton's API");
 
-                requestUri = "https://localhost:7190/api/Characters";
+                requestUri = "https://localhost:7190/api/Characters/";
             }
         }
 
@@ -91,8 +98,57 @@ namespace WorkShop
             return (HttpResponseMessage)resultPOST;
 
         }
+        public static async Task<HttpResponseMessage> ClientPUT()
+        {
+            Header client = new Header();
+            var requestUri = client.requestUri;
 
+            var characterPUT = new Character
+            {
+                Id = 7,
+                PlayerName = "Kolton5",
+                Name = "string",
+                Class = "string",
+                Level = 50,
+                Race = "string",
+                Allignment = "string",
+                Background = "string",
+                ProficiencyBonus = 0,
+                Experiance = 5000,
+                ArmorClass = 0,
+                Initiative = 0,
+                HitPoints = 0,
+                Speed = 0,
+                PartyId = 2,
+                AbilitiesId = 7,
+                Abilities = new Abilities
+                {
+                    Strength = 0,
+                    Dexterity = 0,
+                    Constitution = 0,
+                    Intelligence = 0,
+                    Wisdom = 0,
+                    Charisma = 0
+                },
+                InventoryId = 5,
+                Inventory = new CharacterInventory
+                {
+                    ItemName = "string",
+                    Amount = 0
+                }
+            };
+            var resultPUT = await client.PutAsync<Character>(requestUri + "7", characterPUT, new JsonMediaTypeFormatter());
 
+            return (HttpResponseMessage)resultPUT;
+        }
+        public static async Task<HttpResponseMessage> ClientDELETE()
+        {
+            Header client = new Header();
+            var requestUri = client.requestUri;
 
+            var resultDELETE = await client.DeleteAsync(requestUri + "7");
+
+            return (HttpResponseMessage)resultDELETE;
+        }
     }
 }

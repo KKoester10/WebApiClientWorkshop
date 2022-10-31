@@ -22,5 +22,20 @@ namespace TestProject1
 
             Assert.Equal((double)201, (double)resultPOST.StatusCode);
         }
+        [Fact]
+        public async void TestPut()
+        {
+            var resultPUT = await Program.ClientPUT();
+
+            Assert.Equal((double)204, (double)resultPUT.StatusCode);
+
+        }
+        [Fact]
+        public async void TestDELETE()
+        {
+            var resultDELETE = await Program.ClientDELETE();
+            Assert.Equal((double)204, (double)resultDELETE.StatusCode);
+        }
+
     }
 }
